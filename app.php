@@ -26,4 +26,5 @@ class Vote {
 		$set = $wpdb->get_results($s, "ARRAY_N"); 
 		return (int) $set[0][1];  
 	} 
+	
 } 
