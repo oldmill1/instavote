@@ -10,10 +10,13 @@ include 'app.php';
 
 $app = new Vote(); 
 
-/** 
- * Default template tag is something like: 
- * "n Points"; it is up to the theme designer to supply the HTML 
+/**
+ * Get number of votes
+ * 
+ * @param  array	The options to give to the api 
+ * @return bool		echo's the vote count on success; returns instance of WP_Error on fail 
 */ 
+
 function get_votes( $options ) {
 	global $app; 
 	$defaults = array( 
@@ -21,5 +24,10 @@ function get_votes( $options ) {
 	);  
 	wp_parse_args( $options, $defaults ); 
 	$count = $app->return_votes($options); 
-	echo $count; 
-} 
+	if ( is_null($count) ) { 
+		return new WP_Error('invalid vote count', __("NULL returned instead of vote count when calling get_votes.")); 
+	} else { 
+		echo $count; 
+		return false; 
+	} 
+} 	

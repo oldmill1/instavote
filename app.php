@@ -7,6 +7,10 @@ class Vote {
 		 
 	} 
 	
+	/* 
+	 * Returns number of posts in array 
+	 * 
+	*/ 
 	public function return_votes( $options ) { 
 		// show how many votes post x got 
 		global $wpdb; 
